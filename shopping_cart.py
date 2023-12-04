@@ -6,12 +6,13 @@ items = []
 prices = []
 
 # TODO 2: Opening greeting for users
-print("Welcome to Everything Store! The store where anything you can possibly think of can be bought!")
+print("Welcome to Everything Store! The store where anything you can possibly think of can be bought!\n")
+print("This is your shopping cart:")
 
 # TODO 3: Present options for the users and invite user to choose
 while True:
-    print("Here are your options:\n1. Add an item to your cart\n2. Remove an item from your cart\n3. View the total "
-          "cost of your cart\n4. Checkout")
+    print("\nHere are your options:\n1. Add an item to your cart\n2. Remove an item from your cart\n3. View the total "
+          "cost of your cart\n4. Checkout\n")
     while True:
         try:
             choice = int(input("Please enter the number of the option you would like to choose: "))
@@ -32,20 +33,33 @@ while True:
             except Exception:
                 print("You have entered an invalid price. Please try again.")
         prices.append(price)
-        print(f"{item} has been added to your shopping cart successfully.")
+        print(f"\n{item} has been added to your shopping cart successfully.")
+        print("\nThis is your shopping cart:\n")
+        for i in range(len(items)):
+            print(f"{items[i]}: £{prices[i]:.2f}")
     elif choice == 2:
         remove = input("What would you like to remove from your cart? ")
         if remove.lower() in items:
             index = items.index(remove)
             items.remove(remove)
             prices.pop(index)
-            print(f"{remove} has been removed from your cart successfully.")
+            print(f"\n{remove} has been removed from your cart successfully.")
+            print("\nThis is your shopping cart:\n")
+            for i in range(len(items)):
+                print(f"{items[i]}: £{prices[i]}")
         else:
             print("That item is not in your cart.")
     elif choice == 3:
         total_cost = sum(prices)
-        print(f"The total cost of your shopping cart is £{total_cost:.2f}")
+        print("\nThis is your shopping cart:\n")
+        for i in range(len(items)):
+            print(f"{items[i]}: £{prices[i]}")
+        print(f"\nThe total cost of your shopping cart is £{total_cost:.2f}")
+
     # TODO 5: While loop for users to choose again until they checkout
     else:
-        print("Thank you for shopping at Everything Store!")
+        print("\nThis is your shopping cart:\n")
+        for i in range(len(items)):
+            print(f"{items[i]}: £{prices[i]}")
+        print("\nThank you for shopping at Everything Store!")
         break
