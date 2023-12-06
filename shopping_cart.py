@@ -1,6 +1,13 @@
 """The purpose of this project is to create a shopping cart application for an all-encompassing store. Users will be
 able to add items, remove items, view the total cost, and checkout"""
 
+
+def shopping_cart(items, prices):
+    print("\nThis is your shopping cart:\n")
+    for i in range(len(items)):
+        print(f"{items[i]}: £{prices[i]:.2f}")
+
+
 # TODO 1: Create empty lists for items and prices
 items = []
 prices = []
@@ -34,9 +41,7 @@ while True:
                 print("You have entered an invalid price. Please try again.")
         prices.append(price)
         print(f"\n{item} has been added to your shopping cart successfully.")
-        print("\nThis is your shopping cart:\n")
-        for i in range(len(items)):
-            print(f"{items[i]}: £{prices[i]:.2f}")
+        shopping_cart(items, prices)
     elif choice == 2:
         remove = input("What would you like to remove from your cart? ")
         if remove.lower() in items:
@@ -44,22 +49,16 @@ while True:
             items.remove(remove)
             prices.pop(index)
             print(f"\n{remove} has been removed from your cart successfully.")
-            print("\nThis is your shopping cart:\n")
-            for i in range(len(items)):
-                print(f"{items[i]}: £{prices[i]}")
+            shopping_cart(items, prices)
         else:
             print("That item is not in your cart.")
     elif choice == 3:
         total_cost = sum(prices)
-        print("\nThis is your shopping cart:\n")
-        for i in range(len(items)):
-            print(f"{items[i]}: £{prices[i]}")
+        shopping_cart(items, prices)
         print(f"\nThe total cost of your shopping cart is £{total_cost:.2f}")
 
     # TODO 5: While loop for users to choose again until they checkout
     else:
-        print("\nThis is your shopping cart:\n")
-        for i in range(len(items)):
-            print(f"{items[i]}: £{prices[i]}")
+        shopping_cart(items, prices)
         print("\nThank you for shopping at Everything Store!")
         break
